@@ -35,11 +35,12 @@ function crosswordSolver() {
 
     let newMap = new Array(numberOfRows).fill('').map(() => new Array(numberOfColumns).fill(''));
 
-    for (let y = 0; y < numberOfColumns; y++) {
-        for (let x = 0; x < numberOfRows; x++) {
+    for (let x = 0; x < numberOfRows; x++) {
+        for (let y = 0; y < numberOfColumns; y++) {
 
             if (puzzleMap[x][y] === '.') {
                 newMap[x][y] = '.';
+
             } else if (puzzleMap[x][y] === '2') {
                 let firstWord = words[0];
                 let secondWord = '';
@@ -47,6 +48,8 @@ function crosswordSolver() {
                 for (let i = 1; i < words.length; i++) {
                     if (firstWord[0] === words[i][0]) {
                         secondWord = words[i];
+                        words.splice(i, 1);
+                        words.splice(0, 1);
                     }
                 }
 
@@ -66,14 +69,32 @@ function crosswordSolver() {
                     }
                 }
 
+            }else if (puzzleMap[x][y] === '1') {
+                let currentWord = words[0];
+                words.splice(0, 1);
+
+                if (currentWord.length > numberOfColumns - y) {
+                    for (let i = 0; i < currentWord.length; i++) {
+                        if (puzzleMap[x + i][y] !== '.'){
+                            newMap[x + i][y] = currentWord[i];
+                        }else {
+                            return console.log("Error");
+                        }
+                    }
+
+                }else if (currentWord.length <= numberOfColumns - y) {
+                    for (let i = 0; i < currentWord.length; i++) {
+                        if (puzzleMap[x][y + i] !== '.') {
+                            newMap[x][y + i] = currentWord[i];
+                        } else {
+                            return console.log("Error");
+                        }
+                    }
+                }
+
             }
         }
     }
 
-    console.log("Nombre de lignes (x) :" + numberOfRows);
-    console.log("Nombre de colonnes (y) :" + numberOfColumns);
-
-    console.log("PuzzleMap :", puzzleMap);
-
-    console.log("NewMap :", newMap);
+    console.log(newMap.map(line => line.join('')).join('\n'));
 }
