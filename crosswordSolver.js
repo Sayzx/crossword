@@ -18,7 +18,7 @@ function crosswordSolver(emptyPuzzle, words) {
 
     let isPalindrome = 0;
     for (let i = 0; i < words.length; i++) {
-        if (words[i] === words[i].split('').reverse().join(''));{
+        if (words[i] === words[i].split('').reverse().join('')){
             isPalindrome++;
         }
     }
@@ -99,7 +99,7 @@ function crosswordSolver(emptyPuzzle, words) {
     console.log(newMap.map(line => line.join('')).join('\n'));
 }
 
-const emptyPuzzle = '2000\n0...\n0...\n0...'
-const words = ['abba', 'assa']
+const emptyPuzzle = '2001\n0..0\n2000\n0..0'
+const words = ['casa', 'alan', 'ciao', 'anta']
 
 crosswordSolver(emptyPuzzle, words);
