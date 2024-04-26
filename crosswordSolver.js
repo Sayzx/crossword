@@ -1,25 +1,29 @@
 function crosswordSolver(emptyPuzzle, words) {
-
-    if (words.length === 0 || emptyPuzzle === '' || typeof emptyPuzzle !== 'string' || words.some(word => typeof word !== 'string')){
+    // Check if emptyPuzzle and words are not empty, emptyPuzzle is a string, words is an array and emptyPuzzle is not 0
+    if (words.length === 0 || emptyPuzzle === '' || typeof emptyPuzzle !== 'string' || !Array.isArray(words)|| emptyPuzzle === 0) {
         return console.log("Error");
     }
-
-    for (let i = 0; i < words.length - 1; i++) {
-        if (words[i] === words[i + 1]) {
-            return console.log("Error");
+    // Check if emptyPuzzle has only 0, 1, 2
+    if (/[3-9]/.test(emptyPuzzle)) {
+        return console.log("Error");
+    }
+    // Check if dont have same words on words
+    for (let i = 0; i < words.length; i++) {
+        for (let j = i + 1; j < words.length; j++) {
+            if (words[i] === words[j]) {
+                return console.log("Error");
+            }
         }
     }
-
+    // Check if word have 3 or more consecutive letters
+    if (words.some(word => /(.)\1\1/.test(word))) {
+        return console.log("Error");
+    }
     let lines = emptyPuzzle.split('\n');
-
     let numberOfRows = lines.length;
-
     let numberOfColumns = lines[0].length;
-
     let puzzleMap = lines.map(line => line.split(''));
-
     let newMap = new Array(numberOfRows).fill('').map(() => new Array(numberOfColumns).fill(''));
-
     for (let x = 0; x < numberOfRows; x++) {
         for (let y = 0; y < numberOfColumns; y++) {
 
@@ -76,7 +80,6 @@ function crosswordSolver(emptyPuzzle, words) {
                         }
                     }
                 }
-
             }
         }
     }
@@ -84,17 +87,6 @@ function crosswordSolver(emptyPuzzle, words) {
     console.log(newMap.map(line => line.join('')).join('\n'));
 }
 
-const emptyPuzzle =
-    `2001
-0..0
-1000
-0..0`;
-
-const words= [
-    'casa',
-    'alan',
-    'ciao',
-    'anta',
-]
-
+const emptyPuzzle = '2000\n0...\n0...\n0...'
+const words = ['abba', 'assa']
 crosswordSolver(emptyPuzzle, words);
