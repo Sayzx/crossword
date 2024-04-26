@@ -9,7 +9,7 @@ const words = ['casa', 'alan', 'ciao', 'anta']
 crosswordSolver(puzzle, words)
 ```
 
-##### Try running the function with the arguments:
+##### Tests: 
 
 ```js
 const puzzle = '2001\n0..0\n1000\n0..0'
