@@ -1,19 +1,4 @@
-const emptyPuzzle =
-    `2001
-0..0
-1000
-0..0`;
-
-const words= [
-    'casa',
-    'alan',
-    'ciao',
-    'anta',
-]
-
-crosswordSolver();
-
-function crosswordSolver() {
+function crosswordSolver(emptyPuzzle, words) {
 
     if (words.length === 0 || emptyPuzzle === '' || typeof emptyPuzzle !== 'string' || words.some(word => typeof word !== 'string')){
         return console.log("Error");
@@ -98,3 +83,18 @@ function crosswordSolver() {
 
     console.log(newMap.map(line => line.join('')).join('\n'));
 }
+
+const emptyPuzzle =
+    `2001
+0..0
+1000
+0..0`;
+
+const words= [
+    'casa',
+    'alan',
+    'ciao',
+    'anta',
+]
+
+crosswordSolver(emptyPuzzle, words);
