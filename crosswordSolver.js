@@ -7,7 +7,7 @@ function crosswordSolver(emptyPuzzle, words) {
     if (/[3-9]/.test(emptyPuzzle)) {
         return console.log("Error");
     }
-    // Check if dont have same words on words
+    // Check if we don't have same words on words
     for (let i = 0; i < words.length; i++) {
         for (let j = i + 1; j < words.length; j++) {
             if (words[i] === words[j]) {
@@ -15,10 +15,22 @@ function crosswordSolver(emptyPuzzle, words) {
             }
         }
     }
+
+    let isPalindrome = 0;
+    for (let i = 0; i < words.length; i++) {
+        if (words[i] === words[i].split('').reverse().join(''));{
+            isPalindrome++;
+        }
+    }
+    if (isPalindrome >= 2) {
+        return console.log("Error");
+    }
+
     // Check if word have 3 or more consecutive letters
     if (words.some(word => /(.)\1\1/.test(word))) {
         return console.log("Error");
     }
+
     let lines = emptyPuzzle.split('\n');
     let numberOfRows = lines.length;
     let numberOfColumns = lines[0].length;
@@ -89,4 +101,5 @@ function crosswordSolver(emptyPuzzle, words) {
 
 const emptyPuzzle = '2000\n0...\n0...\n0...'
 const words = ['abba', 'assa']
+
 crosswordSolver(emptyPuzzle, words);
