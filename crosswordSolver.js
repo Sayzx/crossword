@@ -1,5 +1,5 @@
 const emptyPuzzle =
-`2001
+    `2001
 0..0
 1000
 0..0`;
@@ -20,9 +20,9 @@ function crosswordSolver() {
     }
 
     for (let i = 0; i < words.length - 1; i++) {
-       if (words[i] === words[i + 1]) {
-           return console.log("Error");
-       }
+        if (words[i] === words[i + 1]) {
+            return console.log("Error");
+        }
     }
 
     let lines = emptyPuzzle.split('\n');
